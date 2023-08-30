@@ -25,7 +25,7 @@ export class CreateSessionService {
         const findedUser = await this.userRepository.readOne(user)
 
         if (!findedUser) {
-            throw new AppError('Usuário ou senha incorretos', 401);
+            throw new AppError('Usuário! ou senha incorretos', 401);
         }
 
         const passwordConfirmed = await compareHash(
@@ -33,8 +33,11 @@ export class CreateSessionService {
             findedUser.password
         )
 
+        console.log(password)
+        console.log(findedUser.password)
+
         if (!passwordConfirmed) {
-            throw new AppError('Usuário ou senha incorretos', 401);
+            throw new AppError('Usuário ou senha! incorretos', 401);
         }
 
         const payload = {
