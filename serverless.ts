@@ -3,6 +3,7 @@ import type { AWS } from '@serverless/typescript';
 import healthCheck from '@functions/healthCheck';
 import getUser from '@functions/getUser';
 import login from '@functions/login';
+import checkIn from '@functions/checkIn';
 
 const serverlessConfiguration: AWS = {
   service: 'blog-post-admin',
@@ -21,7 +22,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { healthCheck, getUser, login },
+  functions: { healthCheck, getUser, login, checkIn },
   package: { individually: true },
   custom: {
     esbuild: {

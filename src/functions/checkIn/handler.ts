@@ -15,12 +15,11 @@ const userController = new UserController()
 
 const login: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
  
-  const { user, password } = event.body
+  const { token } = event.body
 
   try {    
     await database.connect()
-
-    const response = await userController.login(user, password)
+    const response = await userController.checkIn(token)
 
     return formatJSONResponse({
       response
