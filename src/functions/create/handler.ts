@@ -13,7 +13,7 @@ const database = new Database({
 
 const userController = new UserController()
 
-const login: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const create: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
  
   const { user, mail, password, consent } = event.body
 
@@ -37,4 +37,4 @@ const login: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) =
 };
 
 
-export const main = middyfy(login);
+export const main = middyfy(create);

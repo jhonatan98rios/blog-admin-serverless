@@ -14,7 +14,7 @@ const database = new Database({
 
 const userController = new UserController()
 
-const getUser = async (event) => { 
+const logout = async (event) => { 
   try {    
     await database.connect()
 
@@ -35,4 +35,4 @@ const getUser = async (event) => {
 }
 
 
-export const main = middyfy(getUser);
+export const main = middyfy(logout);
