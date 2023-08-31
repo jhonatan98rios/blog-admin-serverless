@@ -4,6 +4,7 @@ import { IUser } from 'src/domain/User';
 import { CheckInSessionService } from 'src/services/CheckInSessionService';
 import { CreateSessionService } from 'src/services/CreateSessionService';
 import { CreateUserService } from 'src/services/CreateUserService';
+import { LogoutSessionService } from 'src/services/LogoutSessionService';
 import { ReadOneUserService } from 'src/services/ReadOneUserService';
 
 export class UserController {
@@ -52,5 +53,17 @@ export class UserController {
 
         const session = await checkInSession.execute(token)
         return session
+    }
+
+    public async logout(username: string): Promise<any> {
+
+        const userRepository = new MongoDBUserRepository()
+        const userTokenRepository = new MongoDBUserTokenRepository()
+        
+        const logoutService = new LogoutSessionService(userRepository, userTokenRepository)
+        
+        await logoutService.execute(username)
+        console.log(`Token of user ${username} deleted`)
+        return { status: 202 }
     }
 }
