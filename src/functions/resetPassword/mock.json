@@ -1,0 +1,6 @@
+{
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"mail\": \"batata123@gmail.com\", \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoiYmFuYW5hQGdtYWl\", \"password\": \"batata1234\", \"passwordConfirmation\": \"batata1234\"}"
+}

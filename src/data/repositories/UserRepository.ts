@@ -1,4 +1,4 @@
-import { IUser } from "src/domain/User";
+import { IUser, User } from "src/domain/User";
 import { IUserModel, UserModel } from "../models/User.schema";
 
 
@@ -23,5 +23,10 @@ export class MongoDBUserRepository {
     async readOneByMail(mail: string): Promise<IUser | null> {
         const findedUser = await this.userModel.findOne({ mail })
         return findedUser
+    }
+
+    async update(username: string, user: User): Promise<User> {
+        await this.userModel.findOneAndUpdate({ user: username }, user)
+        return user
     }
 }
