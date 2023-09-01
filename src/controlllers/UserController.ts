@@ -1,9 +1,11 @@
 import { MongoDBUserRepository } from 'src/data/repositories/UserRepository';
 import { MongoDBUserTokenRepository } from 'src/data/repositories/UserTokenRepository';
 import { IUser } from 'src/domain/User';
+import SESMailProvider from 'src/providers/SESMailProvider';
 import { CheckInSessionService } from 'src/services/CheckInSessionService';
 import { CreateSessionService } from 'src/services/CreateSessionService';
 import { CreateUserService } from 'src/services/CreateUserService';
+import { ForgotPasswordService } from 'src/services/ForgotPasswordService';
 import { LogoutSessionService } from 'src/services/LogoutSessionService';
 import { ReadOneUserService } from 'src/services/ReadOneUserService';
 
@@ -65,5 +67,16 @@ export class UserController {
         await logoutService.execute(username)
         console.log(`Token of user ${username} deleted`)
         return { status: 202 }
+    }
+
+    public async forgotPassword(mail: string): Promise<any> {
+
+        const userRepository = new MongoDBUserRepository()
+        const mailProvider = new SESMailProvider()
+
+        const forgotPasswordService = new ForgotPasswordService(userRepository, mailProvider)
+
+        const result = await forgotPasswordService.execute(mail)
+        return result
     }
 }

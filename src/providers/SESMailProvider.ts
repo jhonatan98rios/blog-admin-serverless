@@ -1,7 +1,7 @@
 import { SES } from 'aws-sdk';
-
-import * as dotenv from 'dotenv'
 import AppError from 'src/utils/AppError';
+import * as dotenv from 'dotenv'
+
 dotenv.config()
 
 export interface ISendMail {
