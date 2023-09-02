@@ -8,7 +8,7 @@ export default {
         method: 'get',
         path: 'users',
         authorizer: {
-          name: 'validate',
+          name: 'authorizer',
           resultTtlInSeconds: 3600
         }
       },
