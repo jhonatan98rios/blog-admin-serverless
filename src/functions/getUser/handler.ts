@@ -18,7 +18,9 @@ const getUser = async (event) => {
   try {    
     await database.connect()
 
-    const response = await userController.readOne(event.queryStringParameters.user)
+    const { user } = event.queryStringParameters
+    const response = await userController.readOne(user)
+    
     return formatJSONResponse({
       response
     });
