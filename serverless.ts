@@ -10,12 +10,12 @@ import updateUserRole from '@functions/user/updateUserRole'
 import forgotPassword from '@functions/user/forgotPassword'
 import resetPassword from '@functions/user/resetPassword'
 
-import login from '@functions/login';
-import checkIn from '@functions/checkIn';
-import logout from '@functions/logout';
+import login from '@functions/session/login';
+import checkIn from '@functions/session/checkIn';
+import logout from '@functions/session/logout';
 
-import authorizer from '@functions/authorizer'
-import adminAuthorizer from '@functions/adminAuthorizer'
+import authorizer from '@functions/auth/authorizer'
+import adminAuthorizer from '@functions/auth/adminAuthorizer'
 
 
 const serverlessConfiguration: AWS = {
