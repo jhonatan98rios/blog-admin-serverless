@@ -10,6 +10,7 @@ import { LogoutSessionService } from 'src/services/LogoutSessionService';
 import { ReadAllUsersService } from 'src/services/ReadAllUsersService';
 import { ReadOneUserService } from 'src/services/ReadOneUserService';
 import { ResetPasswordService } from 'src/services/ResetPasswordService';
+import { UpdateUserService } from 'src/services/UpdateUserService';
 
 export class UserController {
 
@@ -78,6 +79,18 @@ export class UserController {
         await logoutService.execute(username)
         console.log(`Token of user ${username} deleted`)
         return { status: 202 }
+    }
+
+    public async update({ username, currentPassword, password, passwordConfirmation }): Promise<any> {
+
+        const userRepository = new MongoDBUserRepository()
+
+        const updateUserService = new UpdateUserService(userRepository)
+        const updatedUser = await updateUserService.execute({
+            username, currentPassword, password, passwordConfirmation
+        })
+
+        return updatedUser
     }
 
     public async forgotPassword(mail: string): Promise<any> {

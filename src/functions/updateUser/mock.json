@@ -1,0 +1,6 @@
+{
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"currentPassword\": \"batata123\", \"password\": \"batata1234\", \"passwordConfirmation\": \"batata1234\"}"
+}

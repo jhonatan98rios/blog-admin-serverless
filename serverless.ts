@@ -7,6 +7,7 @@ import login from '@functions/login';
 import checkIn from '@functions/checkIn';
 import create from '@functions/create';
 import logout from '@functions/logout';
+import updateUser from '@functions/updateUser'
 import forgotPassword from '@functions/forgotPassword'
 import resetPassword from '@functions/resetPassword'
 import validate from '@functions/validate'
@@ -28,7 +29,14 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { healthCheck, getAllUsers, getUser, login, checkIn, create, logout, forgotPassword, resetPassword, validate },
+  functions: { 
+    healthCheck, 
+    getAllUsers, getUser, 
+    login, checkIn, logout,
+    create, updateUser, 
+    forgotPassword, resetPassword, 
+    validate 
+  },
   package: { individually: true },
   custom: {
     esbuild: {
