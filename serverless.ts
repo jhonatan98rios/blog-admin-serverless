@@ -10,7 +10,7 @@ import logout from '@functions/logout';
 import updateUser from '@functions/updateUser'
 import forgotPassword from '@functions/forgotPassword'
 import resetPassword from '@functions/resetPassword'
-import validate from '@functions/validate'
+import authorizer from '@functions/authorizer'
 
 const serverlessConfiguration: AWS = {
   service: 'blog-post-admin',
@@ -33,9 +33,9 @@ const serverlessConfiguration: AWS = {
     healthCheck, 
     getAllUsers, getUser, 
     login, checkIn, logout,
-    create, updateUser, 
+    create, updateUser,
     forgotPassword, resetPassword, 
-    validate 
+    authorizer 
   },
   package: { individually: true },
   custom: {

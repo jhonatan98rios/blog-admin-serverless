@@ -1,11 +1,10 @@
 import { verify, Secret } from 'jsonwebtoken'
-import { middyfy } from '@libs/lambda';
 import { authConfig } from 'src/utils/authConfig';
 import { generatePolicy } from 'src/utils/generatePolicy';
 import { APIGatewayTokenAuthorizerEvent } from 'aws-lambda';
 import AppError from 'src/utils/AppError';
 
-const validate = async (event: APIGatewayTokenAuthorizerEvent) => {
+export const authorizer = async (event: APIGatewayTokenAuthorizerEvent) => {
   if (!event.authorizationToken) {
     throw new AppError('Falha ao autenticar o usuário');
   }
@@ -21,5 +20,3 @@ const validate = async (event: APIGatewayTokenAuthorizerEvent) => {
     throw new AppError('Falha ao autenticar o usuário');
   }
 }
-
-export const main = middyfy(validate);
