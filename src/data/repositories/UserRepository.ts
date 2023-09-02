@@ -15,6 +15,11 @@ export class MongoDBUserRepository {
         return user
     }
 
+    async readAll(): Promise<IUser[] | null> {
+        const users = await this.userModel.find()
+        return users
+    }
+
     async readOne(user: string): Promise<IUser | null> {
         const findedUser = await this.userModel.findOne({ user })
         return findedUser

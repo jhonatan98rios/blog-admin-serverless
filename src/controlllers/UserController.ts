@@ -7,6 +7,7 @@ import { CreateSessionService } from 'src/services/CreateSessionService';
 import { CreateUserService } from 'src/services/CreateUserService';
 import { ForgotPasswordService } from 'src/services/ForgotPasswordService';
 import { LogoutSessionService } from 'src/services/LogoutSessionService';
+import { ReadAllUsersService } from 'src/services/ReadAllUsersService';
 import { ReadOneUserService } from 'src/services/ReadOneUserService';
 import { ResetPasswordService } from 'src/services/ResetPasswordService';
 
@@ -31,6 +32,15 @@ export class UserController {
         const readUserService = new ReadOneUserService(userRepository)
         const findedUser = await readUserService.execute(user)
         return findedUser
+    }
+
+    public async readAll(): Promise<any> {
+
+        const userRepository = new MongoDBUserRepository()
+        
+        const readAllUsersService = new ReadAllUsersService(userRepository)
+        const users = await readAllUsersService.execute()
+        return users
     }
 
     public async login(user: string, password: string): Promise<any> {
