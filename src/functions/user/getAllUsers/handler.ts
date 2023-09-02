@@ -34,5 +34,4 @@ const getAllUsers = async () => {
   }
 }
 
-
 export const main = middyfy(getAllUsers);

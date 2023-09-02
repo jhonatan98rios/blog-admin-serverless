@@ -1,18 +1,22 @@
 import type { AWS } from '@serverless/typescript';
 
 import healthCheck from '@functions/healthCheck';
-import getUser from '@functions/getUser';
-import getAllUsers from '@functions/getAllUsers'
+
+import create from '@functions/user/create';
+import getAllUsers from '@functions/user/getAllUsers';
+import getUser from '@functions/user/getUser';
+import updateUser from '@functions/user/updateUser'
+import updateUserRole from '@functions/user/updateUserRole'
+import forgotPassword from '@functions/user/forgotPassword'
+import resetPassword from '@functions/user/resetPassword'
+
 import login from '@functions/login';
 import checkIn from '@functions/checkIn';
-import create from '@functions/create';
 import logout from '@functions/logout';
-import updateUser from '@functions/updateUser'
-import forgotPassword from '@functions/forgotPassword'
-import resetPassword from '@functions/resetPassword'
+
 import authorizer from '@functions/authorizer'
 import adminAuthorizer from '@functions/adminAuthorizer'
-import updateUserRole from '@functions/updateUserRole'
+
 
 const serverlessConfiguration: AWS = {
   service: 'blog-post-admin',
