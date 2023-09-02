@@ -11,6 +11,7 @@ import updateUser from '@functions/updateUser'
 import forgotPassword from '@functions/forgotPassword'
 import resetPassword from '@functions/resetPassword'
 import authorizer from '@functions/authorizer'
+import adminAuthorizer from '@functions/adminAuthorizer'
 import updateUserRole from '@functions/updateUserRole'
 
 const serverlessConfiguration: AWS = {
@@ -36,7 +37,7 @@ const serverlessConfiguration: AWS = {
     login, checkIn, logout,
     create, updateUser, updateUserRole,
     forgotPassword, resetPassword, 
-    authorizer 
+    authorizer, adminAuthorizer
   },
   package: { individually: true },
   custom: {

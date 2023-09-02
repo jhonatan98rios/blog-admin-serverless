@@ -9,7 +9,7 @@ export default {
         method: 'put',
         path: 'update-user-role',
         authorizer: {
-          name: 'authorizer',
+          name: 'adminAuthorizer',
           resultTtlInSeconds: 3600
         },
         request: {
