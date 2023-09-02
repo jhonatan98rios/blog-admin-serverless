@@ -10,6 +10,7 @@ import { LogoutSessionService } from 'src/services/LogoutSessionService';
 import { ReadAllUsersService } from 'src/services/ReadAllUsersService';
 import { ReadOneUserService } from 'src/services/ReadOneUserService';
 import { ResetPasswordService } from 'src/services/ResetPasswordService';
+import { UpdateUserRoleService } from 'src/services/UpdateUserRoleService';
 import { UpdateUserService } from 'src/services/UpdateUserService';
 
 export class UserController {
@@ -88,6 +89,19 @@ export class UserController {
         const updateUserService = new UpdateUserService(userRepository)
         const updatedUser = await updateUserService.execute({
             username, currentPassword, password, passwordConfirmation
+        })
+
+        return updatedUser
+    }
+
+    public async updateRole({ username, role }): Promise<any> {
+
+        const userRepository = new MongoDBUserRepository()
+        const userTokenRepository = new MongoDBUserTokenRepository()
+
+        const updateUserRoleService = new UpdateUserRoleService(userRepository, userTokenRepository)
+        const updatedUser = await updateUserRoleService.execute({
+            username, role
         })
 
         return updatedUser

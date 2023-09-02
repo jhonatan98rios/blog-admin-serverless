@@ -11,6 +11,7 @@ import updateUser from '@functions/updateUser'
 import forgotPassword from '@functions/forgotPassword'
 import resetPassword from '@functions/resetPassword'
 import authorizer from '@functions/authorizer'
+import updateUserRole from '@functions/updateUserRole'
 
 const serverlessConfiguration: AWS = {
   service: 'blog-post-admin',
@@ -33,7 +34,7 @@ const serverlessConfiguration: AWS = {
     healthCheck, 
     getAllUsers, getUser, 
     login, checkIn, logout,
-    create, updateUser,
+    create, updateUser, updateUserRole,
     forgotPassword, resetPassword, 
     authorizer 
   },

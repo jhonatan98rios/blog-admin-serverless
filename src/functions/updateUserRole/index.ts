@@ -7,7 +7,7 @@ export default {
     {
       http: {
         method: 'put',
-        path: 'update-user',
+        path: 'update-user-role',
         authorizer: {
           name: 'authorizer',
           resultTtlInSeconds: 3600
