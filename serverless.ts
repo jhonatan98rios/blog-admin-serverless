@@ -8,6 +8,7 @@ import create from '@functions/create';
 import logout from '@functions/logout';
 import forgotPassword from '@functions/forgotPassword'
 import resetPassword from '@functions/resetPassword'
+import validate from '@functions/validate'
 
 const serverlessConfiguration: AWS = {
   service: 'blog-post-admin',
@@ -26,7 +27,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { healthCheck, getUser, login, checkIn, create, logout, forgotPassword, resetPassword},
+  functions: { healthCheck, getUser, login, checkIn, create, logout, forgotPassword, resetPassword, validate },
   package: { individually: true },
   custom: {
     esbuild: {
