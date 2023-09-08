@@ -1,9 +1,10 @@
 import { verify, Secret } from 'jsonwebtoken'
-import { authConfig } from 'src/utils/authConfig';
-import { generatePolicy } from 'src/utils/generatePolicy';
 import { APIGatewayTokenAuthorizerEvent } from 'aws-lambda';
-import AppError from 'src/utils/AppError';
-import { Roles } from 'src/domain/User';
+
+import { authConfig } from 'opt/nodejs/infra/utils/authConfig';
+import { generatePolicy } from 'opt/nodejs/infra/utils/generatePolicy';
+import AppError from "opt/nodejs/infra/utils/AppError"
+import { Roles } from "opt/nodejs/domain/User"
 
 interface ITokenPayload {
   iat: number

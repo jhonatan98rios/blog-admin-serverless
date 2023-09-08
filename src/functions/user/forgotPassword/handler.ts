@@ -1,10 +1,10 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import { UserController } from 'src/controlllers/UserController';
-import schema from './schema';
-import Database from 'src/data/database';
 import * as dotenv from 'dotenv'
+import { ForgotPasswordController } from './ForgotPasswordController';
+import Database from 'opt/nodejs/infra/data/database';
+import schema from './schema';
 
 dotenv.config()
 
@@ -14,7 +14,7 @@ const database = new Database({
   collection: process.env.DATABASE_NAME!,
 })
 
-const userController = new UserController()
+const userController = new ForgotPasswordController()
 
 const forgotPassword: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
  

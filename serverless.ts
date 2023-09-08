@@ -21,7 +21,7 @@ import adminAuthorizer from '@functions/auth/adminAuthorizer'
 const serverlessConfiguration: AWS = {
   service: 'blog-post-admin',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-offline'],
+  plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-tscpaths'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -32,6 +32,7 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      NODE_PATH: "./:/opt/node_modules"
     },
   },
   // import the function via paths
@@ -43,7 +44,9 @@ const serverlessConfiguration: AWS = {
     forgotPassword, resetPassword, 
     authorizer, adminAuthorizer
   },
-  package: { individually: true },
+  package: { 
+    individually: true,
+  },
   custom: {
     esbuild: {
       bundle: true,
@@ -56,6 +59,14 @@ const serverlessConfiguration: AWS = {
       concurrency: 10,
     },
   },
+  layers: {
+    domain: {
+      path: 'opt/nodejs/infra'
+    },
+    infra: {
+      path: 'opt/nodejs/infra'
+    }
+  }
 };
 
 module.exports = serverlessConfiguration;

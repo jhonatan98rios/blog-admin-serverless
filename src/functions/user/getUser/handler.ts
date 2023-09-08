@@ -1,7 +1,7 @@
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import { UserController } from 'src/controlllers/UserController';
-import Database from 'src/data/database';
+import { ReadOneUserController } from './ReadOneUserController';
+import Database from 'opt/nodejs/infra/data/database';
 import * as dotenv from 'dotenv'
 
 dotenv.config()
@@ -12,7 +12,7 @@ const database = new Database({
   collection: process.env.DATABASE_NAME!,
 })
 
-const userController = new UserController()
+const userController = new ReadOneUserController()
 
 const getUser = async (event) => { 
   try {    

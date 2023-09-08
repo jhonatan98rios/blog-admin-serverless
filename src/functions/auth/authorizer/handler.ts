@@ -1,8 +1,9 @@
 import { verify, Secret } from 'jsonwebtoken'
-import { authConfig } from 'src/utils/authConfig';
-import { generatePolicy } from 'src/utils/generatePolicy';
 import { APIGatewayTokenAuthorizerEvent } from 'aws-lambda';
-import AppError from 'src/utils/AppError';
+
+import { authConfig } from 'opt/nodejs/infra/utils/authConfig';
+import { generatePolicy } from 'opt/nodejs/infra/utils/generatePolicy';
+import AppError from "opt/nodejs/infra/utils/AppError"
 
 export const authorizer = async (event: APIGatewayTokenAuthorizerEvent) => {
   if (!event.authorizationToken) {
