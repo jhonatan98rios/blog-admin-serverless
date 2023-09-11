@@ -4,16 +4,9 @@ import { middyfy } from '@libs/lambda';
 
 import { UpdateUserController } from './UpdateUserController';
 import schema from './schema';
-import Database from 'opt/nodejs/infra/data/database';
 import * as dotenv from 'dotenv'
 
 dotenv.config()
-
-const database = new Database({
-  user: process.env.DATABASE_USER!,
-  password: process.env.DATABASE_PASS!,
-  collection: process.env.DATABASE_NAME!,
-})
 
 const userController = new UpdateUserController()
 
@@ -23,8 +16,6 @@ const updateUser: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (eve
   const { currentPassword, password, passwordConfirmation } = event.body
 
   try {    
-    await database.connect()
-
     const response = await userController.update({ username, currentPassword, password, passwordConfirmation })
 
     return formatJSONResponse({

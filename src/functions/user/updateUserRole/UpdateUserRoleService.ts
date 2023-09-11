@@ -1,9 +1,8 @@
-import { MongoDBUserTokenRepository } from 'opt/nodejs/infra/data/repositories/UserTokenRepository';
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
-
 import { User } from "opt/nodejs/domain/User"
 import AppError from "opt/nodejs/infra/utils/AppError"
 import { roleValidation } from "opt/nodejs/infra/utils/roleValidation"
+import { AbstractUserRepository } from 'opt/nodejs/infra/data/repositories/abstractDB/UserRepository';
+import { AbstractUserTokenRepository } from 'opt/nodejs/infra/data/repositories/abstractDB/UserTokenRepository';
 
 type UpdateUserRoleReponse = {
     user: User
@@ -16,8 +15,8 @@ export type UpdateUserRoleDto = {
 
 export class UpdateUserRoleService {
     constructor(
-        private userRepository: MongoDBUserRepository,
-        private userTokenRepository: MongoDBUserTokenRepository
+        private userRepository: AbstractUserRepository,
+        private userTokenRepository: AbstractUserTokenRepository
     ) {}
 
     async execute({

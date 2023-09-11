@@ -1,5 +1,5 @@
 import { IUser } from "opt/nodejs/domain/User"
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
+import { AbstractUserRepository } from "opt/nodejs/infra/data/repositories/abstractDB/UserRepository";
 import AppError from "opt/nodejs/infra/utils/AppError"
 
 type ReadOneUserResponse = {
@@ -8,7 +8,7 @@ type ReadOneUserResponse = {
 
 export class ReadAllUsersService {
 
-    constructor(private userRepository: MongoDBUserRepository) {}
+    constructor(private userRepository: AbstractUserRepository) {}
 
     async execute(): Promise<ReadOneUserResponse> {
         const users = await this.userRepository.readAll()

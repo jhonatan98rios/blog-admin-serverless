@@ -5,7 +5,9 @@
   "main": "serverless.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "serverless offline start"
+    "dev": "serverless offline start",
+    "database": "serverless dynamodb start",
+    "compose": "docker-compose up -d"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -19,6 +21,7 @@
     "dotenv": "^16.3.1",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.5.0",
+    "serverless-dynamodb-local": "^0.2.40",
     "serverless-tscpaths": "^0.0.8"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import { addHours, isAfter } from "date-fns";
 import AppError from "opt/nodejs/infra/utils/AppError"
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
-import { MongoDBUserTokenRepository } from 'opt/nodejs/infra/data/repositories/UserTokenRepository';
+import { AbstractUserRepository } from "opt/nodejs/infra/data/repositories/abstractDB/UserRepository";
+import { AbstractUserTokenRepository } from "opt/nodejs/infra/data/repositories/abstractDB/UserTokenRepository";
 
 type CheckInSessionResponse = {
     user: string,
@@ -12,8 +12,8 @@ type CheckInSessionResponse = {
 export class CheckInSessionService {
 
     constructor(
-        private userRepository: MongoDBUserRepository,
-        private userTokenRepository: MongoDBUserTokenRepository
+        private userRepository: AbstractUserRepository,
+        private userTokenRepository: AbstractUserTokenRepository
     ) {}
 
     async execute(token: string): Promise<CheckInSessionResponse> {

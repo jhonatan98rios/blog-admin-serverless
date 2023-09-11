@@ -21,7 +21,11 @@ import adminAuthorizer from '@functions/auth/adminAuthorizer'
 const serverlessConfiguration: AWS = {
   service: 'blog-post-admin',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-tscpaths'],
+  plugins: [
+    'serverless-esbuild', 
+    'serverless-offline', 
+    'serverless-tscpaths', 
+  ],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -34,6 +38,20 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       NODE_PATH: "./:/opt/node_modules"
     },
+    iamRoleStatements: [
+      {
+        Effect: 'Allow',
+        Action: [
+          "dynamodb:DescribeTable",
+          "dynamodb:Query",
+          "dynamodb:Scan",
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+        ],
+        Resource: "arn:aws:dynamodb:us-west-2:*:table/BlogUsersTable"
+      }
+    ]
   },
   // import the function via paths
   functions: { 
@@ -61,12 +79,38 @@ const serverlessConfiguration: AWS = {
   },
   layers: {
     domain: {
-      path: 'opt/nodejs/infra'
+      path: 'opt/nodejs/domain'
     },
     infra: {
       path: 'opt/nodejs/infra'
     }
-  }
+  },
+  resources: {
+    Resources: {
+      UsersTable: {
+        Type: "AWS::DynamoDB::Table",
+        Properties: {
+          TableName: "BlogUsersTable",
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 1,
+            WriteCapacityUnits: 1
+          },
+          AttributeDefinitions: [
+            {
+              AttributeName: 'userId',
+              AttributeType: "S",
+            }
+          ],
+          KeySchema: [
+            {
+              AttributeName: 'userId',
+              KeyType: 'HASH',
+            }
+          ]
+        }
+      },
+    }
+  },
 };
 
 module.exports = serverlessConfiguration;

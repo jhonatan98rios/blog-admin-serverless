@@ -1,12 +1,28 @@
 import { IUser, User } from "opt/nodejs/domain/User";
-import { IUserModel, UserModel } from "../models/User.schema";
+import { IUserModel, UserModel } from "../../models/User.schema";
+import { AbstractUserRepository } from "../abstractDB/UserRepository";
+import * as dotenv from 'dotenv'
+import Database from "../../database";
 
+const dbConnect = async () => {
+    dotenv.config()
 
-export class MongoDBUserRepository {
+    const database = new Database({
+        user: process.env.DATABASE_USER!,
+        password: process.env.DATABASE_PASS!,
+        collection: process.env.DATABASE_NAME!,
+    })
+
+    await database.connect()
+}
+
+export class MongoDBUserRepository implements AbstractUserRepository {
 
     private userModel: IUserModel
 
     constructor() {
+        dbConnect()
+
         this.userModel = UserModel.getInstance()
     }
 

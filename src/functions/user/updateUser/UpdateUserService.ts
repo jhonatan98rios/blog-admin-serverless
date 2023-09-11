@@ -1,8 +1,8 @@
 
 import { compareHash, generateHash } from "opt/nodejs/infra/utils/hash"
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
 import AppError from "opt/nodejs/infra/utils/AppError"
 import { User } from "opt/nodejs/domain/User"
+import { AbstractUserRepository } from "opt/nodejs/infra/data/repositories/abstractDB/UserRepository";
 
 type UpdateUserResponse = {
     user: User
@@ -16,7 +16,7 @@ export type UpdateUserDto = {
 }
 
 export class UpdateUserService {
-    constructor(private userRepository: MongoDBUserRepository) {}
+    constructor(private userRepository: AbstractUserRepository) {}
 
     async execute({
         username, currentPassword, password, passwordConfirmation

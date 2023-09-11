@@ -1,5 +1,5 @@
 import { IUser, Roles, User } from "opt/nodejs/domain/User"
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
+import { AbstractUserRepository } from "opt/nodejs/infra/data/repositories/abstractDB/UserRepository";
 import AppError from "opt/nodejs/infra/utils/AppError"
 import { generateHash } from "opt/nodejs/infra/utils/hash"
 
@@ -8,7 +8,7 @@ type CreateUserResponse = {
 }
 
 export class CreateUserService {
-    constructor(private userRepository: MongoDBUserRepository) {}
+    constructor(private userRepository: AbstractUserRepository) {}
 
     async execute({ user, mail, password, consent }: Partial<IUser>): Promise<CreateUserResponse> {
 

@@ -1,13 +1,13 @@
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
-import { MongoDBUserTokenRepository } from 'opt/nodejs/infra/data/repositories/UserTokenRepository';
+import { AbstractUserRepository } from 'opt/nodejs/infra/data/repositories/abstractDB/UserRepository';
+import { AbstractUserTokenRepository } from 'opt/nodejs/infra/data/repositories/abstractDB/UserTokenRepository';
 import AppError from "opt/nodejs/infra/utils/AppError"
 
 
 export class LogoutSessionService {
 
     constructor(
-        private userRepository: MongoDBUserRepository,
-        private userTokenRepository: MongoDBUserTokenRepository
+        private userRepository: AbstractUserRepository,
+        private userTokenRepository: AbstractUserTokenRepository
     ) {}
 
     async execute(username: string): Promise<void> {

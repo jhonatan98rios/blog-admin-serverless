@@ -2,12 +2,12 @@ import { Secret, sign } from 'jsonwebtoken';
 import { authConfig } from 'opt/nodejs/infra/utils/authConfig';
 import AppError from "opt/nodejs/infra/utils/AppError"
 import SESMailProvider from 'opt/nodejs/infra/providers/SESMailProvider';
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
+import { AbstractUserRepository } from 'opt/nodejs/infra/data/repositories/abstractDB/UserRepository';
 
 export class ForgotPasswordService {
 
     constructor(
-        private userRepository: MongoDBUserRepository,
+        private userRepository: AbstractUserRepository,
         private mailProvider: SESMailProvider
     ) {}
 

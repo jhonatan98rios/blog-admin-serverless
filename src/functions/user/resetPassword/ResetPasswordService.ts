@@ -4,7 +4,7 @@ import { authConfig } from 'opt/nodejs/infra/utils/authConfig';
 
 import AppError from "opt/nodejs/infra/utils/AppError"
 import { Roles, User } from "opt/nodejs/domain/User"
-import { MongoDBUserRepository } from 'opt/nodejs/infra/data/repositories/UserRepository';
+import { AbstractUserRepository } from 'opt/nodejs/infra/data/repositories/abstractDB/UserRepository';
 
 interface ITokenPayload {
     iat: number
@@ -27,7 +27,7 @@ type ResetPasswordResponse = {
 export class ResetPasswordService {
 
     constructor(
-        private userRepository: MongoDBUserRepository,
+        private userRepository: AbstractUserRepository,
     ) {}
 
     async execute({ 
